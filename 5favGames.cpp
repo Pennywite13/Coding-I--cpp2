@@ -18,24 +18,21 @@ int main() {
 
         string input1;			// defining input from user
         getline(cin, input1);	// get the input from the player
+        int currentElement = 0;
 
         //making array
         string games[5]; //there can be five games, with values from 0-4s
-        int currentElement = 0;	
-        //seeing what the player put for input
 
-        if (stoi(input1) == 1) { //COMPLETE
+        int n = sizeof(games) / sizeof(games[0]); //for remove, copy paste from online
+
+        if (stoi(input1) == 1) { //COMPLETE (not sure if actually getting the input)
             cout << "Let's add a game to your list.\n";
             cout << "Please type the name of the game you want to add.\n";
             string addinput;
             getline (cin, addinput);
-            int currentElement = 0;
-            if (currentElement < 4){
+            do {
                 games[currentElement++] = addinput;
-            }
-            else {//figure out some way to say if there is a value there
-                cout << "You have run out of space to add games. Please delete one to make room.\n";
-            }        
+            } while (currentElement < 5);
         }
         else if (stoi(input1) == 2) { //COMPLETE
             cout << "Let's edit a games name.\n";
@@ -56,32 +53,31 @@ int main() {
                 }
             }
         }
-        else if (stoi(input1) == 3) {
+        else if (stoi(input1) == 3) { //slightly copy paste. Complete???
             cout << "Let's remove a game.\n";
             cout << "What game would you like to remove? \n";
             string gameRemove;
             getline(cin, gameRemove); //getting input from user
 
             for(int i = 0; i < 5; i++){  //looking through array
-                //code here to get rid of game user wrote
-                if() {  //test if input is in list
+                if(gameRemove == games[i]) {  //test if input is in list
                     //code to delete array
+                            n = n - 1;
+                        for (int j = i; j < n; j++)
+                            games[j] = games[j + 1];
+                    break;
                 }
                 else {
                     cout << "Sorry, the game you entered doesn't seem to be on your list.\n";
                 }
             }
         }
-        else if (stoi(input1) == 4) { //COMPLETE
+        else if (stoi(input1) == 4) { //COMPLETE (isnt actually showing games)
             cout << "Let's view your current list of games.\n";
             cout << "Your current list of favorite games are: \n";
-            for (int i = 0; i < 10; i++) {
-                if(games[i]==""){
-                    continue; //will continue the while loop at the top
-                }
-                else {
-                    cout << games[i] << "\n";
-                }
+            for (int i = 0; i < currentElement; i++) {
+                cout << games[i] << ".\n";
+                
             }
         }
         else if (stoi(input1) == 5) { //COMPLETE
@@ -96,6 +92,9 @@ int main() {
 
 	return 0;
 }
+
+
+//probally isnt getting the input correctly, find some way to test and fix that before moving on
 
 
 
