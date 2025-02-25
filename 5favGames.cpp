@@ -23,7 +23,7 @@ int main() {
 
         //making array
 
-        int n = sizeof(games) / sizeof(games[0]); //for remove, copy paste from online
+        int n = sizeof(games) / sizeof(games[0]); //for remove
 
         if (stoi(input) == 1) { //COMPLETE 
             cout << "Let's add a game to your list.\n";
