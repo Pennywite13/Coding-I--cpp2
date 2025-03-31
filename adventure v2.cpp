@@ -9,19 +9,16 @@
 #include <ctime>
 
 //start of functions
-//need story, askyesno, rolldie, ending, adventure
 void story(){
-    //use cout to print story of them getting news of an assignment
     cout << "Welcome hero! Time to start your adventure.\n";
     cout << "While resting at a tavern, you spot a job to fight some goblins. \n";
+
+    cout << "Will you accept your found quest? \n";
+    string givenYesNo;
+    getline(cin,givenYesNo);
 }
 
 string AskYesNo(string givenYesNo){
-    //cout << "Will you accept your found quest? \n";
-    //string givenYesNo;
-    //getline(cin,givenYesNo)
-    //put above commented out code in main()
-
     if(givenYesNo == "yes"){
         cout << "Amazing! Best of luck on your adventure. \n";
         adventure(); //needs user input in parentheses. call later or in main?
@@ -40,8 +37,12 @@ string AskYesNo(string givenYesNo){
 }
 
 int rollDie(){
-    //make code that rolls a 6 sided die
-    //should be able to copy paste previous code here
+    int diceRoll = (rand()%6+1);
+}
+
+int rollDieEnemy(){
+    int diceRollEnemy  = (rand()%6+1);
+
 }
 
 void ending(){
@@ -64,29 +65,41 @@ bool adventure(string playerInput){
         //should call rollDie() function
         cout << "The best defence is a good offence. \n";
         cout << "You decide to attack! \n";
-        //call function
+        rollDie();   //call function
         //check if number rolled hits
         //if else statement for if it hits. damage delt included
+        if(diceRoll <= 2){  
+            int playerDamage = (rand()%4+1);
+            cout << "Wow! Your attack did " << playerDamage << " points of damage! \n";
+            enemy1Health = (enemy1Health-playerDamage) ;
+        }
+        else{
+            cout << "Oh no! Your attack missed. \n";
+
+        }
     }
 
     if(playerInput =="b"){
-        //code for block
-        //should call rollDie() function
         cout << "You decide to block an oncoming attack! \n";
-        //call function
-        //check if number rolled blocks
-        //if else statement for if it blocks. Damage taken included
+        rollDie();
+        rollDieEnemy();
+        if (rollDie > rollDieEnemy){
+            cout << "Amazing block! You took no damage. \n";
+        }
+        else{ 
+            int enemyDamage = (rand()%5);
+            cout << "Oh no! You shield did not block the attack. \n";
+            cout << "You took " << enemyDamage << " points of damage.\n";
+            playerHealth = playerHealth - enemyDamage ;
+        }
     }
 
     else{
         cout << "That input is not reconized. \n";
         cout << "Make sure you use lowercase letters and try again. \n";
     }
-    //code that lets the player take actions
-    //use numbers to let player input decisions
-    //use if statements to determine number input/action wanted
-    //else statement for invalid input
 }
+
 
 //global variables
 int playerHealth = 10;
@@ -102,7 +115,7 @@ int main() {
 
 //    seed the random number generator
     srand(time(0));
-    
+
 //start the loop
     while(playerHealth > 0) {
         turns +=1;
@@ -110,6 +123,11 @@ int main() {
         cout << "press 'a' to attack, press 'b' to block \n";
         string playerInput;
         cin >> playerInput;
+        adventure(playerInput);
+
+
+
+        
         if (playerInput == "a"){
             int playerDamage = (rand()%4+1);
             cout << "Wow! Your attack did " << playerDamage << " points of damage! \n";
