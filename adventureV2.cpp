@@ -95,7 +95,7 @@ bool adventure(string playerInput){
                 continue;
             }
         }
-        else{
+        if (rollDie() > 4){
             cout << "Oh no! Your attack missed. \n";
 
         }
@@ -141,7 +141,9 @@ story();
         getline(cin,givenYesNo);
         AskYesNo(givenYesNo);
 
+        while (givenYesNo == "yes"){
         turns +=1;
+        cout << " \n";
         cout << "There is a goblin! What would you like to do? \n";
         cout << "press 'a' to attack, press 'b' to block \n";
         string playerInput;
@@ -149,14 +151,17 @@ story();
 
         adventure(playerInput); //pulls player input and runs adventure function
 
-        //continue calling functions from here, stopped here on mar 31
+        }
+        
+
 
         /*
         NOTES
 
         -prints every thing from if statements in a function
-        -ending didnt play when I died
+            -ex: for yes prints yes and bad input text
         -a to attack isnt working
+        -not continuing (or giving option to) once you defeat one goblin
         
         
         */
