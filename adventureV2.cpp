@@ -18,18 +18,34 @@ int totalTreasure = 0;
 
 
 //start of functions
+void ending(){ //all good!
+    if (playerHealth <= 0){ //player is dead
+        cout << "You adventure has come to an end, but not by choice. \n";
+        cout << "You die on the battlefield, leaving " << totalTreasure << " gold behind where you lie.\n";
+        exit(0); //ends code
+    }
+
+    else{  //player is alive
+        cout << "Your adventure has come to an end.\n";
+        cout << "You retire with " << totalTreasure << " treasure to your name.\n";
+        exit(0); //ends code
+    
+    }
+}
+
 void story(){
     cout << "Welcome hero! Time to start your adventure.\n";
     cout << "While resting at a tavern, you spot a job to fight some goblins. \n";
 
 }
 
-string AskYesNo(string givenYesNo){
+void AskYesNo(string givenYesNo){ //all good!
 
 
     if(givenYesNo == "yes"){
         cout << "Amazing! Best of luck on your adventure. \n";
-        //adventure(); //needs user input in parentheses. call later or in main?
+        //need a way to get out of loop and continue to main code
+        //return;
 
     }
 
@@ -38,44 +54,32 @@ string AskYesNo(string givenYesNo){
         ending();
     }
 
+    //if(givenYesNo != "yes" || "no"){
     else{
         cout << "That input is not reconized. \n";
         cout << "Make sure you use lowercase letters and try again. \n";
+        //return;
     }
 }
 
 int rollDie(){
     int diceRoll = (rand()%6+1);
+    return diceRoll;
 }
 
 int rollDieEnemy(){
     int diceRollEnemy  = (rand()%6+1);
+    return diceRollEnemy;
 
-}
-
-void ending(){
-    if (playerHealth <= 0){ //player is dead
-        cout << "You adventure has come to an end, but not by choice. \n";
-        cout << "You die on the battlefield, leaving " << totalTreasure << "behind where you lie.\n";
-    }
-
-    else{  //player is alive
-        cout << "Your adventure has come to an end.\n";
-        cout << "You retire with " << totalTreasure << " treasure to your name.\n";
-        //something to offically end code/break?
-        //(break isnt working because not in a loop)
-    }
 }
 
 bool adventure(string playerInput){
     if(playerInput == "a"){
-        //code for attack
-        //should call rollDie() function
+
         cout << "The best defence is a good offence. \n";
         cout << "You decide to attack! \n";
-        //check if number rolled hits
-        //if else statement for if it hits. damage delt included
-        if(rollDie() <= 2){  
+
+        if(rollDie() <= 4){  
             int playerDamage = (rand()%4+1);
             cout << "Wow! Your attack did " << playerDamage << " points of damage! \n";
             enemy1Health = (enemy1Health-playerDamage) ;
@@ -83,8 +87,12 @@ bool adventure(string playerInput){
                 int randomLoot = (rand()%3+1);
 
                 cout << "You did it, you defeated the goblin! \n";
-                cout << "After the battle, you find a stash of " << randomLoot << " hidden away. \n";
+                cout << "After the battle, you find a stash of " << randomLoot << " gold hidden away. \n";
                 totalTreasure = totalTreasure + randomLoot;
+                
+            }
+            while (enemy1Health <= 0){
+                continue;
             }
         }
         else{
@@ -97,7 +105,7 @@ bool adventure(string playerInput){
         cout << "You decide to block an oncoming attack! \n";
         rollDie();
         rollDieEnemy();
-        if (rollDie > rollDieEnemy){
+        if (rollDie() > rollDieEnemy()){
             cout << "Amazing block! You took no damage. \n";
         }
         else{ 
@@ -105,6 +113,9 @@ bool adventure(string playerInput){
             cout << "Oh no! You shield did not block the attack. \n";
             cout << "You took " << enemyDamage << " points of damage.\n";
             playerHealth = playerHealth - enemyDamage ;
+            if (playerHealth <= 0){
+                ending();
+            }
         }
     }
 
@@ -125,6 +136,7 @@ story();
 //start the loop
     while(playerHealth > 0) {
         cout << "Will you accept your found quest? \n";
+        cout << "Please type 'yes' or 'no' \n";
         string givenYesNo;
         getline(cin,givenYesNo);
         AskYesNo(givenYesNo);
@@ -139,14 +151,18 @@ story();
 
         //continue calling functions from here, stopped here on mar 31
 
+        /*
+        NOTES
+
+        -prints every thing from if statements in a function
+        -ending didnt play when I died
+        -a to attack isnt working
+        
+        
+        */
+
 
 
     
     }
 }
-
-/*
-int main(){
-    cout << "this is a test. \n";
-}
-*/
