@@ -159,6 +159,7 @@ story();
             adventure(playerInput); //pulls player input and runs adventure function
 
         }
+        continue;
 
         /*
         NOTES
