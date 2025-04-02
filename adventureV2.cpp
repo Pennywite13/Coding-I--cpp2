@@ -159,12 +159,11 @@ story();
             adventure(playerInput); //pulls player input and runs adventure function
 
         }
-        
-
 
         /*
         NOTES
-        -not continuing (or giving option to) once you defeat one goblin
+        -not continuing (or giving option to) once you defeat one goblin.
+        -code also isnt ending natrually and needs to be force quit with ^c once goblin 1 is defeated
         
         
         */
