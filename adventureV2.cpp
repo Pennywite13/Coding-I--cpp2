@@ -12,7 +12,6 @@ using namespace std;
 //global variables
 int playerHealth = 10;
 int enemy1Health = 5;
-int turns = 0;
 int totalTreasure = 0;
 
 
@@ -34,22 +33,22 @@ void ending(){ //all good!
 }
 
 void story(){
+    cout << " \n";
     cout << "Welcome hero! Time to start your adventure.\n";
     cout << "While resting at a tavern, you spot a job to fight some goblins. \n";
 
 }
 
-void AskYesNo(string givenYesNo){ //all good!
+void AskYesNo(string givenYesNo){ //printing else when yes is selected
 
 
     if(givenYesNo == "yes"){
+        cout << " \n";
         cout << "Amazing! Best of luck on your adventure. \n";
-        //need a way to get out of loop and continue to main code
-        //return;
 
     }
 
-    if(givenYesNo == "no"){
+    else if(givenYesNo == "no"){
         cout << "sometimes its best to quit while youre ahead, and prioratize safety. \n";
         ending();
     }
@@ -58,7 +57,7 @@ void AskYesNo(string givenYesNo){ //all good!
     else{
         cout << "That input is not reconized. \n";
         cout << "Make sure you use lowercase letters and try again. \n";
-        //return;
+        exit(0);
     }
 }
 
@@ -74,6 +73,7 @@ int rollDieEnemy(){
 }
 
 bool adventure(string playerInput){
+
     if(playerInput == "a"){
 
         cout << "The best defence is a good offence. \n";
@@ -96,9 +96,16 @@ bool adventure(string playerInput){
             }
         }
         if (rollDie() > 4){
+
+            int enemy1Damage = (rand()%4+1);
+            playerHealth = playerHealth - enemy1Damage;
+
             cout << "Oh no! Your attack missed. \n";
+            cout << "Your swing leaves you open and you take " << enemy1Damage << " damage. \n";
+            cout << "You now have " << playerHealth << " health remaining. \n";
 
         }
+        return playerHealth;
     }
 
     if(playerInput =="b"){
@@ -135,6 +142,7 @@ story();
 
 //start the loop
     while(playerHealth > 0) {
+        cout << " \n";
         cout << "Will you accept your found quest? \n";
         cout << "Please type 'yes' or 'no' \n";
         string givenYesNo;
@@ -142,14 +150,13 @@ story();
         AskYesNo(givenYesNo);
 
         while (givenYesNo == "yes"){
-        turns +=1;
-        cout << " \n";
-        cout << "There is a goblin! What would you like to do? \n";
-        cout << "press 'a' to attack, press 'b' to block \n";
-        string playerInput;
-        cin >> playerInput;
+            cout << " \n";
+            cout << "There is a goblin! What would you like to do? \n";
+            cout << "press 'a' to attack, press 'b' to block \n";
+            string playerInput;
+            cin >> playerInput;
 
-        adventure(playerInput); //pulls player input and runs adventure function
+            adventure(playerInput); //pulls player input and runs adventure function
 
         }
         
@@ -157,16 +164,10 @@ story();
 
         /*
         NOTES
-
-        -prints every thing from if statements in a function
-            -ex: for yes prints yes and bad input text
-        -a to attack isnt working
         -not continuing (or giving option to) once you defeat one goblin
         
         
         */
-
-
 
     
     }
