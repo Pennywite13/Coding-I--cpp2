@@ -6,13 +6,65 @@
 #include <string>
 using namespace std;
 
-class Human{
+class human{
+    public:
+    string name; 
+    int health;
+    int baseDamage;  
+    int damage;
 
+    void sayHello(){
+        cout << name << " says hello to you! \n";
+    
+    };
 
+    void setDamage(int givenDamage){
+        int givenDamage = baseDamage;
+
+    };
+
+    //void setHealth(int byAmount){
+    //    int setHealth = health + givenDamage;
+    //};
+
+    int getHealth(){
+        cout << name << "'s current health is " << health << ".\n ";
+    };
+
+    int getBaseDamage(){
+        cout << name << "'s current damage is " << baseDamage << ".\n ";
+    };
+
+    private: 
+    protected:
+    /*
+        //creating the constructor
+        human(string givenName, int givenHealth, int baseDamage){
+
+            name = givenName;
+            health = givenHealth;
+            damage = baseDamage;
+
+            cout << "A new human has been created! .\n";
+
+            
+        }
+    */
 };
+
 
 int main(){
     cout << "This is the begining of the code. \n";
+
+    human humanOne;
+    humanOne.name = "Estrella";
+    humanOne.health = 15;
+    humanOne.baseDamage = 5;
+
+    humanOne.sayHello();
+    humanOne.getHealth();
+
+    return 0;
 }
 
 
@@ -21,14 +73,14 @@ int main(){
 /*
 INCLUDE FOR ASSIGNMENT
 
-string Name
-int Health = 10
-int Damage = 4
+-string Name
+-int Health = 10
+-int Damage = 4
 a Constructor with parameters for name, health, baseDamage
-void SayHello()
+-void SayHello()
 void SetHealth(int byAmount)
 void SetDamage(int givenDamage)
-int GetHealth()
-int GetDamage()
+-int GetHealth()
+-int GetDamage()
 
 */
