@@ -19,7 +19,7 @@ class human{
     };
 
     void setDamage(int givenDamage){
-        int givenDamage = baseDamage;
+        givenDamage = baseDamage;
 
     };
 
@@ -29,10 +29,12 @@ class human{
 
     int getHealth(){
         cout << name << "'s current health is " << health << ".\n ";
+        return health;
     };
 
     int getBaseDamage(){
         cout << name << "'s current damage is " << baseDamage << ".\n ";
+        return damage;
     };
 
     private: 
@@ -63,6 +65,7 @@ int main(){
 
     humanOne.sayHello();
     humanOne.getHealth();
+    humanOne.getBaseDamage();
 
     return 0;
 }
