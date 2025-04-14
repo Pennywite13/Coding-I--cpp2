@@ -8,9 +8,9 @@ using namespace std;
 
 class human{
     public:
-    string name; 
-    int health;
-    int baseDamage;  
+    string name = "Nari"; 
+    int health = 10;
+    int baseDamage = 4;  
     int damage;
 
     void sayHello(){
@@ -23,9 +23,9 @@ class human{
 
     };
 
-    //void setHealth(int byAmount){
-    //    int setHealth = health + givenDamage;
-    //};
+    void setHealth(int byAmount){
+        int setHealth = health;
+    };
 
     int getHealth(){
         cout << name << "'s current health is " << health << ".\n ";
@@ -37,27 +37,29 @@ class human{
         return damage;
     };
 
+    
+        //creating the constructor
+    human(string givenName, int givenHealth, int baseDamage){
+
+        name = givenName;
+        health = givenHealth;
+        damage = baseDamage;
+
+        cout << "A new human has been created! .\n";
+    };
+
+    human(){
+        cout << "This is made by calling the human function.\n";
+    }
     private: 
     protected:
-    /*
-        //creating the constructor
-        human(string givenName, int givenHealth, int baseDamage){
-
-            name = givenName;
-            health = givenHealth;
-            damage = baseDamage;
-
-            cout << "A new human has been created! .\n";
-
-            
-        }
-    */
+    
 };
 
 
 int main(){
-    cout << "This is the begining of the code. \n";
 
+    //making a human with custom attrabutes
     human humanOne;
     humanOne.name = "Estrella";
     humanOne.health = 15;
@@ -67,23 +69,12 @@ int main(){
     humanOne.getHealth();
     humanOne.getBaseDamage();
 
+    //making a second human with base attrabutes
+    human humanTwo;
+
+    humanTwo.sayHello();
+    humanTwo.getHealth();
+    humanTwo.getBaseDamage();
+
     return 0;
 }
-
-
-
-
-/*
-INCLUDE FOR ASSIGNMENT
-
--string Name
--int Health = 10
--int Damage = 4
-a Constructor with parameters for name, health, baseDamage
--void SayHello()
-void SetHealth(int byAmount)
-void SetDamage(int givenDamage)
--int GetHealth()
--int GetDamage()
-
-*/
