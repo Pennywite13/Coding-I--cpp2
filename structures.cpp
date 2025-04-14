@@ -29,7 +29,7 @@ struct employee{
     string name;
     int age;
     //string address
-    address addr;       //structs can hold other structs
+    address addr;   //structs can hold other structs
     float wage;
 
 };
