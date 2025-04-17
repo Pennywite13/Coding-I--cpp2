@@ -23,8 +23,8 @@ class human{
 
     };
 
-    void setHealth(int byAmount){
-        int setHealth = health;
+    void setHealth(int givenHealth){
+       health = givenHealth;
     };
 
     int getHealth(){
@@ -35,6 +35,12 @@ class human{
     int getBaseDamage(){
         cout << name << "'s current damage is " << baseDamage << ".\n ";
         return damage;
+    };
+
+    void changeHealth(int by =1){
+        int tempHealth = health;
+        tempHealth += by;
+        setHealth(tempHealth);
     };
 
     
@@ -56,8 +62,49 @@ class human{
     
 };
 
+class magicalGirl : public human{     //making child fighter of parent human
+    public:
+        int sparkles;
+
+        void transformation(){
+            cout << name << " transforms in a wave of sparkles! \n";
+        }
+
+        void attack(human& target){   //& says dont clone, just points to the target (keeps the same person)
+            cout << "The magical girl " << name << " has attacked " << target.name << "!\n";
+            int halfOfTargetHealth = target.getHealth() /2;
+            target.changeHealth(-halfOfTargetHealth);
+            //target.changeHealth(-(target.getHealth()/2)); //divides target by two
+        }
+};
+
+class villian : public human{     //making child fighter of parent human
+    public:
+        int darkness;
+
+        void darkCover(){
+            cout << name << " covers the area in darkness! \n";
+        }
+};
+
+
+//create another child class of human
+
 
 int main(){
+
+    magicalGirl ace;
+    ace.name = "Mace";
+    ace.sayHello();
+    ace.transformation();
+    cout << "Magical girls go brrrrrr \n";
+
+    villian statue;
+    statue.name = "The Otherworldly Statue";
+    statue.sayHello();
+    statue.darkCover();
+    cout << "Oh no! Villian stuff! \n";
+
 
     //making a human with custom attrabutes
     human humanOne;
@@ -75,6 +122,9 @@ int main(){
     humanTwo.sayHello();
     humanTwo.getHealth();
     humanTwo.getBaseDamage();
+
+    ace.attack(statue); 
+    statue.getHealth();
 
     return 0;
 }
