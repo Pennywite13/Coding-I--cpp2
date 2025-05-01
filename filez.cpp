@@ -49,7 +49,7 @@ void readFromFile(){
 void writeShipToFile(ship givenShip){
     cout << "writing " << givenShip.name << " to file.\n";
 
-    ofstream file("ship.txt", ios::app);  
+    ofstream file("ship2.txt", ios::app);  
 
     if(!file.is_open()){
         cout << "Could not open file.\n";
