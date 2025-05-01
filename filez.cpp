@@ -58,7 +58,8 @@ void writeShipToFile(ship givenShip){
 
     file << givenShip.name << "\n";
     file << givenShip.fuel << "\n";
-    switch(shipType){
+
+    switch(givenShip.type){
         case Fighter: file << "fighter.\n";
             break;
         case Frigate: file << "frigate.\n";
@@ -70,16 +71,14 @@ void writeShipToFile(ship givenShip){
         default: file << "unknown.\n";
             break;
         }
-
-
-    file.close();
     
+    file.close();
 
 }
 
 
 /*
-    Files well use tody
+    Files we'll use tody
 
     1. headersAndFiles.cpp     //entry point for rest of program
     2. filez.h
