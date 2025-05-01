@@ -46,6 +46,37 @@ void readFromFile(){
 
 }
 
+void writeShipToFile(ship givenShip){
+    cout << "writing " << givenShip.name << " to file.\n";
+
+    ofstream file("ship.txt", ios::app);  
+
+    if(!file.is_open()){
+        cout << "Could not open file.\n";
+        return;
+    }
+
+    file << givenShip.name << "\n";
+    file << givenShip.fuel << "\n";
+    switch(shipType){
+        case Fighter: file << "fighter.\n";
+            break;
+        case Frigate: file << "frigate.\n";
+            break;
+        case Freighter: file << "freighter.\n";
+            break;
+        case Cruiser: file << "cruiser.\n";
+            break;    
+        default: file << "unknown.\n";
+            break;
+        }
+
+
+    file.close();
+    
+
+}
+
 
 /*
     Files well use tody

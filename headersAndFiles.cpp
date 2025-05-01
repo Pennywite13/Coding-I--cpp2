@@ -13,6 +13,8 @@ int main(){
     ship anne;
     anne.status();
 
+    writeShipToFile(anne);
+
     return 0;
 }
 
